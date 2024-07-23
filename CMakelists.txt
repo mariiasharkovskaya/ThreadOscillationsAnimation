@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.0)
+project(OpenCVExample)
+
+find_package(OpenCV REQUIRED)
+
+include_directories(${OpenCV_DIR})
+
+add_executable(OpenCVExample forcedOsc.cpp)
+
+target_link_libraries(OpenCVExamples ${OpenCV_LIBS})
