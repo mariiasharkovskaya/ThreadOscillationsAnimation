@@ -1,0 +1,10 @@
+.vs/
+build/
+Debug/
+output/
+x64/
+forcedFigures/*
+forcedOsc.exe
+mygif.exe
+mygifnew.exe
+mygifpr.exe
