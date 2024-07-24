@@ -111,8 +111,16 @@ std::vector<double> get_xvl(double l)
     return xvl;
 }
 
-int main()
+// forcedOsc.exe w1 T1
+int main(int argc, char *argv[])
 {
+    double arg_w1 = atof(argv[1]);
+    double arg_T1 = atof(argv[2]);
+    //std::cout << arg_w1 << std::endl;
+    //std::cout << arg_T1 << std::endl;
+    std::vector<double> temp;
+    std::cout << temp.max_size() << std::endl;
+
     double l = 1;
     double A = 1;
     std::vector<double> xv = get_xv();
@@ -121,9 +129,9 @@ int main()
     std::vector<double> xvl = get_xvl(l);
 
     double T1 = 4 * M_PI * std::sqrt(l) / (std::sqrt(g) * mkv[0]);   
-    double w = 1;
+    double w = arg_w1; // 1; // TODO: Arg
     double f = w / (2 * M_PI);
-    double T = 1 / f;
+    double T = arg_T1 / f; // 1 / f; // TODO: Arg
     double k = 1;
 
     plt::figure();
@@ -140,6 +148,7 @@ int main()
         plt::title(title);
         plt::grid(true); 
         //plt::show();
+        //std::cout << "First stage: " << t << " out of " << T << std::endl;
         std::string filename = "forcedFigures/plot_" + std::to_string(j) + ".png";
         plt::savefig(filename);
 
@@ -147,7 +156,7 @@ int main()
     }   
 
     plt::figure();
-    w = 2 * M_PI;
+    w = 2 * M_PI; // TODO: Arg
     T = 1;
     j = 1;
     for (double t = 0; t <= T; t+=T/7)
@@ -162,6 +171,7 @@ int main()
         plt::title(title);
         plt::grid(true); 
         //plt::show();
+        //std::cout << "Second stage: " << t << " out of " << T << std::endl;
         std::string filename = "forcedFigures/plot_w2PI_" + std::to_string(j) + ".png";
         plt::savefig(filename);
         j++;
@@ -170,7 +180,7 @@ int main()
     plt::figure();
     double w1 = std::sqrt(g) * mkv[0] / (std::sqrt(l) * 2);
     w = w1 - w1 * 0.1;
-    T = 10;
+    T = 1; //10;
     j = 1;
     for (double t = 0; t <= T; t+=T/7)
     {
@@ -184,6 +194,7 @@ int main()
         plt::title(title);
         plt::grid(true); 
         //plt::show();
+        //std::cout << "Third stage: " << t << " out of " << T << std::endl;
         std::string filename = "forcedFigures/plot_closeToResonance_" + std::to_string(j) + ".png";
         plt::savefig(filename);
         j++;
